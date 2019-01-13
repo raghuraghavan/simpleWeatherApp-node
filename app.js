@@ -18,15 +18,15 @@ geeCode.geocodeAddress(argv.address, (errorMessage, result) => {
         console.log(errorMessage);
     } else {
         //console.log(JSON.stringify(result, undefined, 2));
-        console.log(`Please wait ...  \nRequesting current Temperatures of ${result.Address}`);
+        console.log(`Please wait ...  \nRequesting Temperatures for : ${result.Address}`);
         //console.log(`Latitude             : ${result.Latitude}`);
         //console.log(`longitude            : ${result.longitude}`)
         Weather.getWeather(result.Latitude, result.longitude, (errorMessage, weatherResult) => {
             if (errorMessage) {
                 console.log(errorMessage);
             } else {
-                console.log(`Current Temp         :  ${weatherResult.currentTemp}'F & Feels like  ${weatherResult.feelsLike}'F`);
-                console.log(`Belongs to timezone  : ${weatherResult.timeZone}`);
+                console.log(`Current Temp                : ${weatherResult.currentTemp}'F & Feels like  ${weatherResult.feelsLike}'F`);
+                console.log(`Belongs to timezone         : ${weatherResult.timeZone}`);
             }
         });
     }
