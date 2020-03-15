@@ -11,7 +11,6 @@ const argv = yargs
     })
     .help().alias('help', 'h')
     .argv;
-
 const encodedAddress = encodeURIComponent(argv.address);
 const geocodeUrl = `http://www.mapquestapi.com/geocoding/v1/address?key=AENjGKZAOMmhEK2G5RaZcOwjvxu87kdL&location=${encodedAddress}`;
 axios.get(geocodeUrl)
@@ -22,13 +21,17 @@ axios.get(geocodeUrl)
         const address = street + ' ' + response.data.results[0].locations[0].adminArea5 + ' ' + response.data.results[0].locations[0].adminArea3 + ' ' + response.data.results[0].locations[0].adminArea1 + ' ' + response.data.results[0].locations[0].postalCode;
         const weatherUrl = `https://api.darksky.net/forecast/34aae13d473a32773e73d8203110b7b4/${lat},${lng}`;
         console.log(`Please wait .....\nRetriving current temp for ${address}`);
+        console.log(weatherUrl)
         return axios.get(weatherUrl);
     }).then((response) => {
+        // console.log(JSON.stringify(response.data))
+        const summary = response.data.currently.summary;
         const currentTemp = response.data.currently.temperature;
         const feelsLike = response.data.currently.apparentTemperature;
         const timeZone = response.data.timezone;
-        console.log(`Current Temp     :  ${currentTemp}'F & Feels like  ${feelsLike}'F`);
-        console.log(`Timezone         : ${timeZone}`);
+        console.log(`Current Condition  : ${summary}`)
+        console.log(`Current Temp       : ${currentTemp}'F & Feels like  ${feelsLike}'F`);
+        console.log(`Timezone           : ${timeZone}`);
     })
     .catch((errorMessage) => {
         if (errorMessage.code === 'ENOTFOUND') {
