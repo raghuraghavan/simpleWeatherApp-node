@@ -8,6 +8,7 @@ var getWeather = (lat, lng, callback) => {
     }, (error, response, body) => {
         if (!error && response.statusCode === 200) {
             callback(undefined, {
+                summary: body.currently.summary,
                 currentTemp: body.currently.temperature,
                 feelsLike: body.currently.apparentTemperature,
                 timeZone: body.timezone
