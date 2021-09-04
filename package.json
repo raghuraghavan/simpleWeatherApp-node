@@ -4,13 +4,11 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
-
-    "axios": "^0.18.1",
-
-    "nodemon": "^1.18.9",
-    "redis": "^3.0.2",
+    "axios": "^0.21.1",
+    "nodemon": "^2.0.12",
+    "redis": "^3.1.2",
     "request": "^2.88.0",
-    "yargs": "^12.0.5"
+    "yargs": "^17.1.1"
   },
   "devDependencies": {},
   "scripts": {

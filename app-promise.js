@@ -29,9 +29,11 @@ axios.get(geocodeUrl)
         const currentTemp = response.data.currently.temperature;
         const feelsLike = response.data.currently.apparentTemperature;
         const timeZone = response.data.timezone;
+        const _date = response.data.currently.time
         console.log(`Current Condition  : ${summary}`)
         console.log(`Current Temp       : ${currentTemp}'F & Feels like  ${feelsLike}'F`);
         console.log(`Timezone           : ${timeZone}`);
+        console.log(`Current date time  : ${getDate(_date)}`)
     })
     .catch((errorMessage) => {
         if (errorMessage.code === 'ENOTFOUND') {
@@ -40,6 +42,13 @@ axios.get(geocodeUrl)
             console.log(errorMessage.message)
         }
     })
+
+
+    // convert epoch date to local date & time.
+function getDate(epochDate){
+    const date = new Date(epochDate * 1000); // multiply by 1000 for milliseconds
+    return date_string = date.toLocaleString('en-GB', { hour12:true });  // 24 hour format
+}
 
 //const weatherUrl = `https://api.darksky.net/forecast/34aae13d473a32773e73d8203110b7b4/${lat},${lng}`
 //Current Temp  :  49.7'F & Feels like 47.3'F

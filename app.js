@@ -28,16 +28,17 @@ geeCode.geocodeAddress(argv.address, (errorMessage, result) => {
                 console.log(`Current Summary      : ${weatherResult.summary}`);
                 console.log(`Current Temp         : ${weatherResult.currentTemp}'F & Feels like  ${weatherResult.feelsLike}'F`);
                 console.log(`Belongs to timezone  : ${weatherResult.timeZone}`);
+                console.log(`Current time         : ${getDate(weatherResult.date)}`)
             }
         });
     }
 });
 
-
-
-//Current Temp  :  49.7'F & Feels like 47.3'F
-//Time zone: America / Los_Angeles
-
+// convert epoch date to local date & time.
+function getDate(epochDate){
+    const date = new Date(epochDate * 1000); // multiply by 1000 for milliseconds
+    return date_string = date.toLocaleString('en-GB', { hour12:true });  // 24 hour format
+}
 
 // forecast.io (darksky.com)
 //34aae13d473a32773e73d8203110b7b4

@@ -11,7 +11,8 @@ var getWeather = (lat, lng, callback) => {
                 summary: body.currently.summary,
                 currentTemp: body.currently.temperature,
                 feelsLike: body.currently.apparentTemperature,
-                timeZone: body.timezone
+                timeZone: body.timezone,
+                date : body.currently.time
             });
         } else {
             callback(`Error occured when concating forecast.io server : ${error}`);
